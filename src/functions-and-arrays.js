@@ -1,19 +1,38 @@
 // Iteration #1: Find the maximum
-function maxOfTwoNumbers() {}
+function maxOfTwoNumbers(number1, number2) {
+  if (number1 === number2)
+    return number1;
+  else {
+    if (number1 > number2)
+      return number1;
+    else
+    return number2;
+  }
+}
 
 
 
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
-function findLongestWord() {}
+function findLongestWord(paramArray) {
+  switch (paramArray.length){
+    case 0: return null;
+    case 1: return words[0];
+    default: 
+  }
+}
 
 
 
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-function sumNumbers() {}
+function sumNumbers(paramArray) {
+  if (paramArray.length>0)
+    return paramArray.reduce(function (totalSum, element) { return totalSum + element});
+  return 0;
+}
 
 
 
@@ -26,8 +45,16 @@ function sum() {}
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(paramArray) {
+  let numberElements = paramArray.length
+//  console.log(numberElements);      Don't needed anymore
+  if (numberElements === 0)
+    return null;
+  let sumArrays = paramArray.reduce(function (totalSum, element) { return totalSum + element});
+  return sumArrays/numberElements;
+}
 
+console.log(averageNumbers([])); //For testing an Empty array 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
