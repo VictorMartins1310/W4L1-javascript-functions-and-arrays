@@ -19,7 +19,7 @@ function findLongestWord(paramArray) {
   let longestWord = "";
   switch (paramArray.length){
     case 0: return null;
-    case 1: return words[0];
+    case 1: return paramArray[0];
     default: 
         paramArray.forEach(element => {
           if (element.length > longestWord)
@@ -29,8 +29,6 @@ function findLongestWord(paramArray) {
         return longestWord;
   }
 }
-
-
 
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
@@ -42,25 +40,31 @@ function sumNumbers(paramArray) {
 }
 
 
-
 // Iteration #3.1 Bonus:
 function sum(paramArray) {
   if (paramArray.length === 0) {
     return 0;
   }
-
+  let itZero = true;
   let totalSum = 0;
+
   paramArray.forEach(element => {
-    if (typeof(element) !== numbers)
+    let value = element;
+    if (typeof(element) === "boolean" && element === true)
+        value = 1;
+    if (typeof(element) === "string")
+      value = element.length;
+    if (typeof(element) === "object")
       throw new Error("Error message goes here");
-    else
-      totalSum += element;
+    if (element !== 0 && itZero === true)
+        itZero = false;
+      totalSum += value;
     }
   );
+  if (itZero === true)
+    return 0;
   return totalSum;
 }
-
-
 
 // Iteration #4: Calculate the average
 // Level 1: Array of numbers
@@ -110,7 +114,6 @@ function avg(paramArray) {
     })
   return sumElement/paramArray.length;
 }
-console.log(avg([6, 12, 'miami', 1, true, 'barca', '200', 'lisboa', 8, 10]))
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -128,9 +131,16 @@ const wordsUnique = [
 ];
 
 function uniquifyArray(paramArray) {
+  // not working not descovered
   if (paramArray.length === 0) {
     return null;
   }
+  console.log(paramArray);
+  let newArray = paramArray.filter(function(element){
+    return paramArray.includes(element);
+  })
+  console.log(newArray);
+  return newArray;
 }
 
 
@@ -138,10 +148,17 @@ function uniquifyArray(paramArray) {
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist(paramArray) {
+function doesWordExist(paramArray, element2Find) {
   if (paramArray.length === 0) {
     return null;
   }
+  // Dont need anymore, simpler with includes
+  // let isElementFound = false;
+  // paramArray.forEach(element => {
+  //   if (element === element2Find)
+  //     isElementFound = false;
+  // });
+return paramArray.includes(element2Find);
 }
 
 
@@ -161,10 +178,15 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes(paramArray) {
+function howManyTimes(paramArray, element) {
   if (paramArray.length === 0) {
     return 0;
   }
+  let repetition = 0;
+  for (let i = 0; i < paramArray.length; i++) 
+      if (paramArray[i] === element)
+        repetition++;
+  return repetition;
 }
 
 
